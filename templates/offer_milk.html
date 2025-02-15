@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'milkshakes.css' %}">
+
+{% endblock link %}
+
+{% block body %}
+<div id="empty">
+</div>
+<!-- <h1 class="heading" >Milk Shakes</h1> -->
+
+<div id="parent">
+    {% for i in data %}
+    <div class="child">
+        <img src="{{ i.image.url }}" alt="">
+        <div class="product_content">
+            <p>{{ i.productName }}</p>
+            <p>₹ {{ i.productPrice }}</p>
+            <p>{{ i.quantity }}</p>
+            {% if i.Discount %}
+            <p>{{ i.Discount }}% Off</p>
+            {% endif %}
+        </div>
+        <div class="buttons">
+            {% if i.id in cart_items %}
+                <a href="{% url 'myapp:cartpage' %}">
+                    <button type="button" class="go-to-cart" id="go-to-cart">Go To Cart</button>
+                </a>
+            {% else %}
+                <form action="{% url 'myapp:addtocart' i.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="prod_id" value="{{ i.id }}" id="prod_id">
+                    <button id="cart" class="add-to-cart" type="submit">Add to Cart</button>
+                </form>
+            {% endif %}
+        </div>
+        
+    </div>
+{% endfor %}
+</div>
+{% endblock body %}

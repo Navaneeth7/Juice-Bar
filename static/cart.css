@@ -1,0 +1,193 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Empty Cart */
+#empty{
+    width:100%;
+    height:8.7rem;
+    display:grid;
+}
+
+
+@font-face {
+    font-family: CarmenSansb;
+    src: url('/static/font/CarmenSans-Bold.ttf');
+    font-weight: normal;
+}
+
+/* Cart Container */
+.cart-container {
+    display: flex;
+    font-family: CarmenSansb, sans-serif;
+    justify-content: center;
+    gap: 20px;
+    max-width: 900px;
+    margin: auto;
+    flex-wrap: wrap; 
+}
+
+/* Shopping Cart */
+.cart {
+    flex: 2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-height: 600px; 
+    overflow-y: auto;
+}
+
+.cart-heading{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Cart Table */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 1.5rem;
+}
+.cart-table td{
+    font-size:1.3rem;
+}
+
+/* Product Info */
+.product-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.product-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Quantity Controls */
+.quantity-form {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.quantity-btn {
+    background: #ddd;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.quantity {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.minus:hover, .plus:hover {
+    background: #bbb;
+}
+
+/* Remove Button */
+.remove-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.remove-btn:hover {
+    background: #b02a37;
+}
+
+/* Back to Shop */
+.back-shop {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1.5rem;
+}
+
+/* Summary */
+.summary {
+    flex: 1;
+    padding: 20px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    max-height: 500px; 
+    position: sticky;
+    top: 0;
+}
+p {
+    margin-bottom: 1.3rem; 
+}
+.summary h2 {
+    margin-bottom: 0.8rem;
+    margin-top: 0.5rem;
+} 
+.summary input {
+    width: 100%;
+    padding: 0.2rem;
+    margin: 2rem 2rem 2rem 2rem;
+    border: none;
+    background-color:transparent;
+    text-align:right;
+    font-size: 1.5rem;
+}
+.summary h4 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin: 0.1rem 0.1rem 0.1rem 0.1rem;
+}
+.summary .price input{
+    margin: 1.2rem 2rem 2rem 1rem;
+    width:48%;
+}
+.summary #totalPrice,#discount,#shipping,#subTotal{
+    width:50%;
+}
+/* Checkout Button */
+.placeOrder {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top:2rem;
+    margin-bottom: 2rem;
+    background: #28a745;
+    color: white;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+
+.placeOrder:hover {
+    background: #218838;
+}
+/* Responsive */
+@media (max-width: 768px) {
+    .cart-container {
+        flex-direction: column;
+    }
+
+    .cart, .summary {
+        width: 100%;
+    }
+}

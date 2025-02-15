@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'cart.css' %}">
+{% endblock link %}
+
+<div id="empty">
+
+</div>
+<div class="cart-container">
+    <div class="cart">
+        <h1 class="cart-heading">Shopping Cart</h1>
+
+        <table class="cart-table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td class="product-info">
+                    <img src="{{ i.image.url }}" alt="{{ i.product }}" class="product-img">
+                    <span>{{ i.product }}</span>
+                </td>
+                <td>₹{{ i.price }}</td>
+                <td>
+                    <form action="{% url 'myapp:update_cart' %}" method="post" class="quantity-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="prod_id" value="{{ i.id }}">
+                        <button type="submit" name="action" value="-" class="quantity-btn minus">−</button>
+                        <span class="quantity">{{ i.number }}</span>
+                        <button type="submit" name="action" value="+" class="quantity-btn plus">+</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="{% url 'myapp:delete_item' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="prod_id" value="{{ i.id }}">
+                        <button type="submit" class="remove-btn">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'myapp:homepage' %}" class="back-shop">← Back to shop</a>
+</div>
+<div class="summary">
+    <h2>Summary</h2>
+    <p>Items: <span id="cartItems">{{ total_items }}</span></p>
+    <h4>Subtotal : <input type="text" value="{{ subtotal }}" id="subTotal" readonly></h4>
+    <h4>Discount : <input type="text" value="{{ discount }}" id="discount" readonly></h4>
+    <h4>Shipping : <input type="text" value="{{ shipping }}" id="shipping" readonly></h4>
+    <h4 class="price">Total Price: <input type="text" value="{{ totalprice }}" id="totalPrice" readonly></h4>
+
+    <form action="{% url 'myapp:place_order' %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="placeOrder" id="placeholder_button">Place Order</button>
+    </form>
+    
+</div>
+</div>
+<script>
+    let price_button=document.getElementById("placeholder_button");
+    let price=document.getElementById("totalPrice").value;
+    function invisible(){
+        if (price==0){
+            price_button.disabled=true;
+        }
+    }
+
+</script>
+{% endblock body %}

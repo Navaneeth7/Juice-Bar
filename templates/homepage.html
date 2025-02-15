@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'homepage.css' %}">
+<script src="{% static 'homepage.js' %}" defer></script>
+{% endblock link %}
+{% block body %}
+
+<div id="empty">
+</div>
+<div class="container_one">
+    <div class="vidhead">
+        <video src="{% static 'video/juicebarvideo.mp4' %}" autoplay muted loop></video>
+    </div>
+    <div class="main_heading">
+        <span>J</span>
+        <span>U</span>
+        <span>I</span>
+        <span>C</span>
+        <span>E</span>
+        <span>&nbsp;</span>
+        <span>B</span>
+        <span>A</span>
+        <span>R</span>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="scroller">
+    <div class="image-container">
+        <a href="{% url 'myapp:offer_milk' d=5 %}">
+        <img src="{% static 'softdrinks_offers.jpg' %}" alt="softdrinks">
+        <span class="offer-btn">5% OFF</span>
+        <span class="order-btn">Order Now</span>
+    </a>
+    </div>
+    <div class="image-container">
+        <a  href="{% url 'myapp:offer_milk' d=40 %}">
+        <img src="{% static 'alcohols_offers.jpg' %}" alt="alcohols">
+        <span class="offer-btn">40% OFF</span>
+        <span class="order-btn">Order Now</span>
+    </a>
+    </div>
+    <div class="image-container">
+        <a href="{% url 'myapp:offer_milk' d=10 %}">
+        <img src="{% static 'hotBeverages_offers.jpg' %}" alt="hotbeverages">
+        <span class="offer-btn">10% OFF</span>
+        <span class="order-btn">Order Now</span>
+    </a>
+    </div>
+    <div class="image-container">
+        <a href="{% url 'myapp:offer_milk' d=15 %}">
+        <img src="{% static 'fruitjuices_offers.jpg' %}" alt="fruitjuices">
+        <span class="offer-btn">15% OFF</span>
+        <span class="order-btn">Order Now</span>
+    </a>
+    </div>
+    <div class="image-container">
+        <a href="{% url 'myapp:offer_milk' d=25 %}">
+        <img src="{% static 'milkshakes_offers.jpg' %}" alt="Hot Drink">
+        <span class="offer-btn">25% OFF</span>
+        <span class="order-btn">Order Now</span>
+    </a>
+    </div>
+    <div class="image-container">
+        <a href="{% url 'myapp:offer_milk' d=20 %}">
+        <img src="{% static 'mocktails_offers.jpg' %}" alt="mocktails">
+        <span class="offer-btn">20% OFF</span>
+        <span class="order-btn">Order Now</span>
+    </a>
+    </div>
+</div>
+</div>
+<div id="cat_heading"><span>Drink Collection</span></div>
+<div id="parent_division">
+    {% for i in data %}
+        <a href="{% url 'myapp:category_view' i.id %}">
+            <div class="child">
+                <img src="{{ i.image.url }}" alt="Product Image" class="image">
+                <div class="content">
+                    <h1>{{ i.heading }}</h1>
+                    <p>{{ i.descrption }}</p>
+                    <ul class="products_list">
+                        <li class="products">{{ i.product1 }}</li>
+                        <li class="products">{{ i.product2 }}</li>
+                        <li class="products">{{ i.product3 }}</li>
+                        <li class="products">{{ i.product4 }}</li>
+                        <li class="products">{{ i.product5 }}</li>
+                        <li class="products">{{ i.product6 }}</li>
+                        <li class="products">{{ i.product7 }}</li>
+                        <li class="products">{{ i.product8 }}</li>
+                        <li class="products">{{ i.product9 }}</li>
+                        <li class="products">{{ i.product10 }}</li>
+                    </ul>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+{% endblock body %}
+
+

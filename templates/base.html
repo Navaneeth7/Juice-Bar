@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <script src="{% static 'base.js' %}" defer></script>
+    {% block link %}{% endblock link %}
+</head>
+<body>
+    <header>
+        <!-- <img id="logo" src="./../static/logo.png"> -->
+        <img id="logo" src="{% static 'logo.png' %}">
+        <div id="nav_heading"><span id="span_nav_head">Juice Bar</span></div>
+        <nav class="navbar">
+            <ul id="list">
+            <li><a href="{% url 'myapp:homepage' %}">Home</a></li>
+            <li><a href="{% url 'myapp:orders' %}">Orders</a></li>
+            <li><a href="{% url 'signup' %}">Signup</a></li>
+            <li><a href="{% url 'myapp:cartpage' %}"><i id="cart" class="fas fa-shopping-cart"></i></a></li>
+            <li><a href="#" id="profileLogo"><i class="fas fa-user-circle"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            {% if user.is_authenticated %}
+            <span class="close">&times;</span>
+            <h1 class="modal-heading">User Details</h1>
+            <button id="usernameButton">
+                <span id="ButtonHeading">Username: </span>
+                <span id="plusSymbol">+</span>
+            </button>
+            <span id="username" style="display: none;">{{ user.username }}</span>
+            <button id="emailButton">
+                <span id="ButtonHeading">Email: </span>
+                <span id="plusSymbol">+</span>
+                </button>
+            <span id="email" style="display: none;">{{ user.email }}</span>
+            <div class="logout-container">
+                <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+            </div>
+            
+        {% else %}
+            <span class="close">&times;</span>
+            <br>
+            <br>
+            <br>
+            <span id="not_login_text">Not Yet Login.Please Login</span>
+            <div class="logout-container">
+                <a href="{% url 'login' %}" class="logout-button">Login</a>
+            </div>
+            
+        {% endif %}
+
+        </div>
+    </div>
+    {% block body %}
+    {% endblock body %}
+    
+    <footer class="footer">
+    <div class="container">
+        <div class="footer-columns">
+            <div class="footer-logo">
+                <h2>JuiceBar</h2>
+                <p>Fresh. Healthy. Delicious.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Menu</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>Email: juicebarassist@gmail.com</p>
+                <p>Phone: +123-456-7890</p>
+                <p>Address: 123 Juice Street, NYC</p>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <p class="footer-copyright">© 2025 JuiceBar. All rights reserved.</p>
+    </div>
+</footer>
+    
+</body>
+</html>

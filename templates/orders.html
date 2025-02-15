@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'orders.css' %}">
+{% endblock link %}
+
+{% block body %}
+<div id="empty"></div>
+
+<div class="orders-container">
+    <h2 class="orders-heading">Your Orders</h2>
+
+    {% if orders %}
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Ordered At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.product.productName }}</td>
+                        <td>{{ order.quantity }}</td>
+                        <td>{{ order.price }}</td>
+                        <td>{{ order.ordered_at }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="no-orders-message">
+            You have not placed any orders yet.
+        </div>
+    {% endif %}
+</div>
+
+{% endblock body %}
